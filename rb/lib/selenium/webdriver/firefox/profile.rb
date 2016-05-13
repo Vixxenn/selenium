@@ -38,7 +38,11 @@ module Selenium
 
         class << self
           def ini
-            @ini ||= ProfilesIni.new
+            # original line memoizes ini file, but this prevents
+            # us from updating the ini file as we create new profiles
+            # for each browser instance so we can have unique proxy IPs
+            # @ini ||= ProfilesIni.new
+            ProfilesIni.new
           end
 
           def from_name(name)
